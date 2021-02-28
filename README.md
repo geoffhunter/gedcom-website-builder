@@ -1,5 +1,7 @@
 # gedcom-websitebuilder
 
+Note: this utility needs the .py and .txt files in the gedcom-file-processor repository to function
+
 This utility allows the user to produce HTML web pages, showing a family tree, from a GEDCOM format file.
 
 An example is at https://familyhistoryrecords.000webhostapp.com/ 
