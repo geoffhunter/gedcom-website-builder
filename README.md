@@ -22,7 +22,7 @@ Each tree page has hyperlinks to the top-level of the other 3 trees.
 
 Modules
 
-FamilyTreeWebsiteBuilder.pyw
+gedcom-website-builder.pyw
 
 The main module. This module presents the user with a Windows user interface, allowing them to edit parameters, process a GEDCOM format file or build the website.
 
