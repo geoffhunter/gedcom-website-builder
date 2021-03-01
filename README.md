@@ -26,7 +26,7 @@ gedcom-website-builder.pyw
 
 The main module. This module presents the user with a Windows user interface, allowing them to edit parameters, process a GEDCOM format file or build the website.
 
-Parameters used in the FamilyTreeWebsiteBuilder utility are:
+Parameters used in the gedcom-website-builder utility are:
 
 GED File: The name of the GEDCOM format file to be processed. The file should be in the location where the utility runs.
 Website Path: Set to the full path of the folder to contain the web pages and containing an ‘images’ folder containing document images, e.g. if images are in C:\website\images, set this parameter to C:\website. Note: each document image must have a filename with the name and date of birth of an individual in the report, e.g. the filename of an image of the Birth Index Register document for Mary Jane Swales, born in 1885, should be ‘Swales, Mary Jane b. 1885 – BIR.jpg’. BIR is an image type. See ImageTypes.txt.
@@ -37,7 +37,7 @@ Person4: The ID of the 1st person in the 4th family tree to be built
 
 ged_lib.py
 
-See the GEDFileProcessor utility for information on this module.
+See the gedcom-file-processor utility for information on this module.
 
 create_tree.py
 
