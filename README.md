@@ -54,7 +54,7 @@ write_tree_page creates a ‘persons’ list then calls add_person 15 times, onc
 						Person 7
 				Person 6
 						Person 8
-Person 1	
+	Person 1	
 						Person 11
 				Person 10
 						Person 12
