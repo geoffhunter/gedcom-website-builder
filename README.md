@@ -47,21 +47,21 @@ create_ tree calls write_tree_page for each of the persons defined in params.
 
 write_tree_page creates a ‘persons’ list then calls add_person 15 times, once for each position on the tree page. Each time it passes the number of the person to be added (e.g. Person 2), and the number of the person that the person is a parent of (e.g. Person 1), and whether the person is the father or mother. Persons are arranged on the page in the following way:
 
-									                  Person 4
-						            Person 3
-									                  Person 5
-			      Person 2	
-									                  Person 7
-						            Person 6
-									                  Person 8
+						Person 4
+				Person 3
+						Person 5
+		Person 2	
+						Person 7
+				Person 6
+						Person 8
 Person 1	
-									                  Person 11
-						            Person 10
-									                  Person 12
-			      Person 9	
-									                  Person 14
-						            Person 13
-									                  Person 15
+						Person 11
+				Person 10
+						Person 12
+		Person 9	
+						Person 14
+				Person 13
+						Person 15
 
 write_tree_page then removes the forenames and year of birth from the person’s details if the person is at the top-level of the tree.
 	
