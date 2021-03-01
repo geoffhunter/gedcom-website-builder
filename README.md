@@ -1,4 +1,4 @@
-# gedcom-websitebuilder
+# gedcom-website-builder
 
 Note: this utility needs the ged_lib.py and params.txt files in the gedcom-file-processor repository to function
 
