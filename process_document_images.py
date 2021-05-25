@@ -1,5 +1,5 @@
 import os
-import params
+import ged_lib as gl
 
 class file_type_order_class(object):
     def __init__(self, file_type=None, order=None):
@@ -8,7 +8,7 @@ class file_type_order_class(object):
 
 def process_document_images():
 #    print ("\nProcessing document images")
-    params.get_params()
+    gl.get_params()
     font_style = "style=font-family:\"courier\";font-weight:bold;"
 
     file_type_order = []
@@ -30,7 +30,7 @@ def process_document_images():
     last_person_id = ""
     ifile = ""
     c_records = 0
-    for r, d, f in os.walk(params.website_path + "/images"):
+    for r, d, f in os.walk(gl.website_path + "/images"):
         for file in f:
             if '.jpg' in file or '.JPG' in file:
                 file_name = file[0:len(file)-4]
@@ -62,7 +62,7 @@ def process_document_images():
                 ifile.write("</html>")
                 ifile.close()
 
-            document_list = params.website_path + "/List " + person_id + ".html"
+            document_list = gl.website_path + "/List " + person_id + ".html"
             ifile = open(document_list,"w")
             ifile.write("<!DOCTYPE html PUBLIC \" -//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n")
             ifile.write("<html>\n")
@@ -81,7 +81,7 @@ def process_document_images():
         ifile.write("<p style=\"margin-left: 40px;\" class=\"font_8\">\n")
         ifile.write("<span style=\"text-decoration: underline;\"><a href=\"" + file_name_HTML + "\">" + long_file_type + "</a></span></p>\n")
             
-        file_name_HTML = params.website_path + "\\" + file_name_HTML
+        file_name_HTML = gl.website_path + "\\" + file_name_HTML
         hfile = open(file_name_HTML,"w")
         hfile.write("<!DOCTYPE html PUBLIC \" -//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n")
         hfile.write("<html>\n")
@@ -101,4 +101,4 @@ def process_document_images():
         ifile.write("</html>")
         ifile.close()
             
-#process_document_images()
+process_document_images()

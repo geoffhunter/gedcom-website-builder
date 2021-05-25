@@ -1,7 +1,5 @@
 import os
-import params
-import individuals as ind
-import families as fam
+import ged_lib as gl
 
 class persons_class(object):
     def __init__(self, individual_id=None, name=None, birth_year=None, more=None, link=None):
@@ -13,17 +11,17 @@ class persons_class(object):
 
 def create_tree():
 #    print("\nCreating tree")
-    params.get_params()
+    gl.get_params()
 
-    ind.read_individuals()
-    fam.read_families()
+    gl.read_individuals()
+    gl.read_families()
     
     suppress = "Y"
 
-    if params.person1 != "": write_tree_page (params.person1, 1, suppress)
-    if params.person2 != "": write_tree_page (params.person2, 1, suppress)
-    if params.person3 != "": write_tree_page (params.person3, 1, suppress)
-    if params.person4 != "": write_tree_page (params.person4, 1, suppress)
+    if gl.person1 != "": write_tree_page (gl.person1, 1, suppress)
+    if gl.person2 != "": write_tree_page (gl.person2, 1, suppress)
+    if gl.person3 != "": write_tree_page (gl.person3, 1, suppress)
+    if gl.person4 != "": write_tree_page (gl.person4, 1, suppress)
 
 def write_tree_page(id, level, suppress):
     font_style = "style=font-family:\"consolas\";font-weight:bold;"
@@ -51,7 +49,7 @@ def write_tree_page(id, level, suppress):
         persons[1].birth_year = ""
         persons[1].link = False
 
-    file_name_html = params.website_path + "/Tree" + str(level) + " " + persons[1].name + ".html"
+    file_name_html = gl.website_path + "/Tree" + str(level) + " " + persons[1].name + ".html"
 #    print(file_name_html)
     hfile = open(file_name_html,"w")
 
@@ -157,13 +155,13 @@ def write_tree_page(id, level, suppress):
     write_long_branch_down(hfile)
     write_person(hfile, persons[15].name, persons[15].birth_year, persons[15].more, persons[15].link, level)
     
-    n1 = ind.get_person_name(params.person1)
+    n1 = gl.get_person_name(gl.person1)
     n1 = n1[0:n1.find(",")]
-    n2 = ind.get_person_name(params.person2)
+    n2 = gl.get_person_name(gl.person2)
     n2 = n2[0:n2.find(",")]
-    n3 = ind.get_person_name(params.person3)
+    n3 = gl.get_person_name(gl.person3)
     n3 = n3[0:n3.find(",")]
-    n4 = ind.get_person_name(params.person4)
+    n4 = gl.get_person_name(gl.person4)
     n4 = n4[0:n4.find(",")]
     
     hfile.write("<br>")
@@ -207,17 +205,17 @@ def add_person (persons, n, child, parent_type, individual_id):
         # otherwise set current id to parent of the id in the child person record
         if parent_type == "F":
             # if father, get the child's father's id
-            if persons[child].individual_id != 0: current_id = fam.get_father_id(persons[child].individual_id)
+            if persons[child].individual_id != 0: current_id = gl.get_father_id(persons[child].individual_id)
         else:
             # if mother, get the child's mother's id
-            if persons[child].individual_id != 0: current_id = fam.get_mother_id(persons[child].individual_id)
+            if persons[child].individual_id != 0: current_id = gl.get_mother_id(persons[child].individual_id)
         
     if current_id != 0:
         # get the current individual's name and birth date
-        name = ind.get_person_name(current_id)
-        birth_year = ind.get_birth_year(current_id)
+        name = gl.get_person_name(current_id)
+        birth_year = gl.get_birth_year(current_id)
         # if the current person has a parent, set 'more' flag to True
-        if fam.get_father_id(current_id) != "" or fam.get_mother_id(current_id) != "": more = True
+        if gl.get_father_id(current_id) != "" or gl.get_mother_id(current_id) != "": more = True
         # if the person has an associated list of documents
         if document_list_exists(name, birth_year): link = True
 
@@ -247,7 +245,7 @@ def write_person(hfile, person, birth_year, more, link, level):
     hfile.write("<br>\n")
 
 def document_list_exists(n, bd):
-    file = params.website_path + "/List " + n + " " + bd + ".html"
+    file = gl.website_path + "/List " + n + " " + bd + ".html"
     if os.path.exists(file):
         return True
     else:
@@ -270,10 +268,10 @@ def write_vertical_line(hfile):
 
 def write_spaces_before_more(hfile, p, b):
     l = len(p) + len(b)
-    if l > 31:
-        print ("Need SpacesBeforemore for > 30")
+    if l > 32:
+        print ("Need SpacesBeforemore for > 32", l)
         exit()
 
-    write_spaces(hfile, 31 - l)
+    write_spaces(hfile, 32 - l)
 
 #create_tree()
