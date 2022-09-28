@@ -101,4 +101,4 @@ def process_document_images():
         ifile.write("</html>")
         ifile.close()
             
-process_document_images()
+#process_document_images()

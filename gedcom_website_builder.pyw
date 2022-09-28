@@ -9,7 +9,7 @@ def clicked1():
     gl.process_ged_file()
 
 def clicked2():
-    gl.process_ged_file()
+    #gl.process_ged_file()
     pdi.process_document_images()
     ct.create_tree()
 

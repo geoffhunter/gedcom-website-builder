@@ -49,7 +49,7 @@ def write_tree_page(id, level, suppress):
         persons[1].birth_year = ""
         persons[1].link = False
 
-    file_name_html = gl.website_path + "/Tree" + str(level) + " " + persons[1].name + ".html"
+    file_name_html = gl.website_path + "/Tree" + str(level) + " " + clean_file_path(persons[1].name) + ".html"
 #    print(file_name_html)
     hfile = open(file_name_html,"w")
 
@@ -167,13 +167,13 @@ def write_tree_page(id, level, suppress):
     hfile.write("<br>")
     hfile.write("<br>")
     write_spaces(hfile, 40)
-    hfile.write("<a href=\"Tree1 " + n1 + ".html\">" + n1 + "</a>\n")
+    hfile.write("<a href=\"Tree1 " + clean_file_path(n1) + ".html\">" + n1 + "</a>\n")
     write_spaces(hfile, 4)
-    hfile.write("<a href=\"Tree1 " + n2 + ".html\">" + n2 + "</a>\n")
+    hfile.write("<a href=\"Tree1 " + clean_file_path(n2) + ".html\">" + n2 + "</a>\n")
     write_spaces(hfile, 4)
-    hfile.write("<a href=\"Tree1 " + n3 + ".html\">" + n3 + "</a>\n")
+    hfile.write("<a href=\"Tree1 " + clean_file_path(n3) + ".html\">" + n3 + "</a>\n")
     write_spaces(hfile, 4)
-    hfile.write("<a href=\"Tree1 " + n4 + ".html\">" + n4 + "</a>\n")
+    hfile.write("<a href=\"Tree1 " + clean_file_path(n4) + ".html\">" + n4 + "</a>\n")
     hfile.write("<br>")
     hfile.write("</body>")
     hfile.write("</html>")
@@ -233,19 +233,19 @@ def write_spaces(hfile, n):
 def write_person(hfile, person, birth_year, more, link, level):
 
     if link:
-        hfile.write("<a href=\"List " + person + " " + birth_year + ".html\">" + person + " " + birth_year + "</a>\n")
+        hfile.write("<a href=\"List " + clean_file_path(person + " " + birth_year) + ".html\">" + person + " " + birth_year + "</a>\n")
     else:
         hfile.write(person + " " + birth_year + "\n")
 
     if more:
         write_spaces_before_more (hfile, person, birth_year)
         next_tree_level = str(level + 3)
-        hfile.write("<a href=\"Tree" + next_tree_level + " " + person + ".html\">&gt;</a>\n")
+        hfile.write("<a href=\"Tree" + next_tree_level + " " + clean_file_path(person) + ".html\">&gt;</a>\n")
     
     hfile.write("<br>\n")
 
 def document_list_exists(n, bd):
-    file = gl.website_path + "/List " + n + " " + bd + ".html"
+    file = gl.website_path + "/List " + clean_file_path(n + " " + bd) + ".html"
     if os.path.exists(file):
         return True
     else:
@@ -273,5 +273,8 @@ def write_spaces_before_more(hfile, p, b):
         exit()
 
     write_spaces(hfile, 32 - l)
+
+def clean_file_path(path):
+    return path.replace("?","").replace("*","").replace("\"","")
 
 #create_tree()

@@ -1,14 +1,13 @@
 # gedcom-website-builder
 
-Note: this utility needs the ged_lib.py and params.txt files in the gedcom-file-processor repository to function
+*A utility to produce HTML web pages, showing a family tree, from a GEDCOM format file.*
 
-A utility to produce HTML web pages, showing a family tree, from a GEDCOM format file.
-
-Overview
+## Overview
 
 This utility allows the user to produce HTML web pages, showing a family tree, from a GEDCOM format file.
 
-An example is at https://familyhistoryrecords.000webhostapp.com/ 
+An example can be browsed here:
+https://jonathanduke.github.io/gedcom-website-builder/sample/
 
 It produces trees for up to 4 level-1 persons, e.g. the user’s grandparents. These level-1 persons are identified by their surname only, to protect their privacy in case they are still living. Other persons are shown with surname, forename(s) and year of birth. 
 
@@ -20,26 +19,34 @@ Where the level-4 person has known ancestors, a hyperlink is provided to take th
 
 Each tree page has hyperlinks to the top-level of the other 3 trees. 
 
-Modules
+## Prerequisites
 
-gedcom-website-builder.pyw
+* This utility needs the **ged_lib.py** and **params.txt** files in the [**gedcom-file-processor**](https://github.com/geoffhunter/gedcom-file-processor) repository to function:
+
+> `mklink ged_lib.py ..\gedcom-file-processor\ged_lib.py`
+
+> `mklink params.txt ..\gedcom-file-processor\params.txt`
+
+## Modules
+
+### gedcom-website-builder.pyw
 
 The main module. This module presents the user with a Windows user interface, allowing them to edit parameters, process a GEDCOM format file or build the website.
 
 Parameters used in the gedcom-website-builder utility are:
 
-GED File: The name of the GEDCOM format file to be processed. The file should be in the location where the utility runs.
-Website Path: Set to the full path of the folder to contain the web pages and containing an ‘images’ folder containing document images, e.g. if images are in C:\website\images, set this parameter to C:\website. Note: each document image must have a filename with the name and date of birth of an individual in the report, e.g. the filename of an image of the Birth Index Register document for Mary Jane Swales, born in 1885, should be ‘Swales, Mary Jane b. 1885 – BIR.jpg’. BIR is an image type. See ImageTypes.txt.
-Person1: The ID of the 1st person in the 1st family tree to be built
-Person2: The ID of the 1st person in the 2nd family tree to be built
-Person3: The ID of the 1st person in the 3rd family tree to be built
-Person4: The ID of the 1st person in the 4th family tree to be built
+* GED File: The name of the GEDCOM format file to be processed. The file should be in the location where the utility runs.
+* Website Path: Set to the full path of the folder to contain the web pages and containing an ‘images’ folder containing document images, e.g. if images are in C:\website\images, set this parameter to C:\website. Note: each document image must have a filename with the name and date of birth of an individual in the report, e.g. the filename of an image of the Birth Index Register document for Mary Jane Swales, born in 1885, should be ‘Swales, Mary Jane b. 1885 – BIR.jpg’. BIR is an image type. See ImageTypes.txt.
+* Person1: The ID of the 1st person in the 1st family tree to be built
+* Person2: The ID of the 1st person in the 2nd family tree to be built
+* Person3: The ID of the 1st person in the 3rd family tree to be built
+* Person4: The ID of the 1st person in the 4th family tree to be built
 
-ged_lib.py
+### ged_lib.py
 
-See the gedcom-file-processor utility for information on this module.
+See the [**gedcom-file-processor**](https://github.com/geoffhunter/gedcom-file-processor) utility for information on this module.
 
-create_tree.py
+### create_tree.py
 
 This module contains the create_tree subroutine that builds the website based on the parameters and information in Individuals.txt, Families.txt and Children.txt.
 
@@ -75,7 +82,7 @@ add_person adds a person to the ‘persons’ list. If the person being added is
 
 write_person writes the person’s name and birth year (both passed as parameters) to the open HTML file. This includes a hyperlink if the person has an associated document list (‘link’ indicator passed as a parameter). If a link to the next level tree is required (‘more’ indicator passed as a parameter), the link is written.
 
-process_document_images.py
+### process_document_images.py
 
 This module processes the document image files in the \images folder within the website folder identified in params.
 
